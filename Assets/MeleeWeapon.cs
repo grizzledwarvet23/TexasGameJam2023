@@ -9,6 +9,8 @@ public class MeleeWeapon : MonoBehaviour
     public float attackDuration = 0.25f;
     public AudioSource attackSound;
 
+    private bool justAttacked = false;
+
     private BoxCollider2D boxCollider;
     // Start is called before the first frame update
     void Start()
@@ -25,15 +27,23 @@ public class MeleeWeapon : MonoBehaviour
 
     //on collision with enemy, call enemy's TakeDamage method
     void OnTriggerEnter2D(Collider2D other) {
-        if (isAttacking) {
+        if (isAttacking && !justAttacked) {
             Enemy enemy = other.GetComponent<Enemy>();
             Debug.Log("Enemy: " + enemy);
             if (enemy != null) {
-
+                justAttacked = true;
+                StartCoroutine(SetJustAttacked(false, 0.1f));
                 enemy.TakeDamage(1);
             }
         }
     }
+
+    IEnumerator SetJustAttacked(bool value, float delay) {
+        yield return new WaitForSeconds(delay);
+        justAttacked = value;
+    }
+
+
 
     //create a coroutine that moves weapon forward for delay/2, then moves it back for delay/2:
     IEnumerator MoveWeaponForward(float delay) {

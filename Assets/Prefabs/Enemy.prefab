@@ -118,7 +118,7 @@ MonoBehaviour:
   health: 3
   detectionRadius: 1
   damageMarker: {fileID: 7149581573868470698, guid: 2b9d199dbb3f8fa4abb94abeccfca775, type: 3}
-  speed: 1.5
+  speed: 2
   trackDelay: 1
 --- !u!50 &2443755814422765409
 Rigidbody2D:
