@@ -6,7 +6,7 @@ public class MeleeWeapon : MonoBehaviour
 {
     [System.NonSerialized]
     public bool isAttacking = false;
-    public float attackDuration = 0.25f;
+    public float attackDuration = 0.05f;
 
     private BoxCollider2D boxCollider;
     // Start is called before the first frame update
@@ -46,11 +46,30 @@ public class MeleeWeapon : MonoBehaviour
         }
     }
 
+    IEnumerator RotateSword(float delay) {
+        //start sword a little back
+        transform.parent.transform.Rotate(Vector3.back * 45);
+        for (int i = 0; i < 60; i++) {
+            transform.parent.transform.Rotate(Vector3.forward * (9 / 6.0f));
+
+            yield return new WaitForSeconds(delay/60);
+        }
+        // for (int i = 0; i < 10; i++) {
+        //     transform.parent.transform.Rotate(Vector3.back * 9);
+        //     yield return new WaitForSeconds(delay/25);
+        // }
+        //reset sword to original position
+        transform.parent.transform.Rotate(Vector3.forward * 45);
+    }
+
     public void Attack() {
-        isAttacking = true;
-        boxCollider.enabled = true;
-        StartCoroutine(SetAttacking(false, attackDuration));
-        StartCoroutine(MoveWeaponForward(attackDuration));
+        if(!isAttacking) {
+            isAttacking = true;
+            boxCollider.enabled = true;
+            StartCoroutine(SetAttacking(false, attackDuration));
+            //StartCoroutine(MoveWeaponForward(attackDuration));
+            StartCoroutine(RotateSword(attackDuration));
+        }
     }
 
     IEnumerator SetAttacking(bool value, float delay) {
