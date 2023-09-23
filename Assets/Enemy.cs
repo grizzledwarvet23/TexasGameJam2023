@@ -71,10 +71,15 @@ public class Enemy : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
         else if(player != null && canTrack) {
-            Vector3 dir = player.transform.position - transform.position;
+            Vector2 dir = player.transform.position - transform.position;
             dir.Normalize();
             rb.velocity = dir * speed;
-            StartCoroutine(SetCanTrack(trackDelay));
+            //also consider we dont want to bump into other enemies.
+            //so we need to check if there are any enemies in the direction we are going
+            //the parent has a list of all enemies. we can check if any of them are in the direction we are going
+            //if they are, we can set the direction to be perpendicular to the direction we are going:
+            StartCoroutine(SetCanTrack(trackDelay)); 
+
         }
 
     }

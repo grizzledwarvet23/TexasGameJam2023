@@ -67,6 +67,7 @@ public class MeleeWeapon : MonoBehaviour
         if(!isAttacking) {
             isAttacking = true;
             boxCollider.enabled = true;
+            attackSound.Play();
             StartCoroutine(SetAttacking(false, attackDuration));
             //StartCoroutine(MoveWeaponForward(attackDuration));
             StartCoroutine(RotateSword(attackDuration));
