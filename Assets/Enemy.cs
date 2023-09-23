@@ -14,23 +14,69 @@ public class Enemy : MonoBehaviour
     //this is a prefab
     public GameObject damageMarker;
 
+    private GameObject player;
+
+    public float speed = 2f;
+
+    private Rigidbody2D rb;
+
+    public float trackDelay;
+
+    private bool canTrack = true;
+
+    private bool collidingWithPlayer = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //player is find tag Player
+        player = GameObject.FindWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+        bool foundPlayer = false;
         foreach (Collider2D collider in colliders) {
             if (collider.gameObject.tag == "Player") {
                 //move towards player
                 collider.gameObject.GetComponent<Player>().TakeDamage(1);
+                foundPlayer = true;
             }
         }
+
+        if(foundPlayer)
+        {
+            collidingWithPlayer = true;
+        }
+        else
+        {
+            collidingWithPlayer = false;
+        }
         
+    }
+
+    IEnumerator SetCanTrack(float delay) {
+        canTrack = false;
+        yield return new WaitForSeconds(delay);
+        canTrack = true;
+    }
+
+    void FixedUpdate() {
+        //get direction to player, normalize it, and multiply by speed
+        if(collidingWithPlayer) {
+            rb.velocity = Vector2.zero;
+        }
+        else if(player != null && canTrack) {
+            Vector3 dir = player.transform.position - transform.position;
+            dir.Normalize();
+            rb.velocity = dir * speed;
+            StartCoroutine(SetCanTrack(trackDelay));
+        }
+
     }
 
     //draw it
