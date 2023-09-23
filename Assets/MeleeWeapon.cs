@@ -6,7 +6,7 @@ public class MeleeWeapon : MonoBehaviour
 {
     [System.NonSerialized]
     public bool isAttacking = false;
-    public float attackDuration = 0.05f;
+    public float attackDuration = 0.25f;
 
     private BoxCollider2D boxCollider;
     // Start is called before the first frame update

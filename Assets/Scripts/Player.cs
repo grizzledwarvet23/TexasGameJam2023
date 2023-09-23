@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,9 +11,17 @@ public class Player : MonoBehaviour
 
     public MeleeWeapon weapon;
     public GameObject weaponParent;
+
+    public Slider healthBar;
+    public int health = 10;
+    private int healthMax;
+
+    private bool invincible = false;
     // Start is called before the first frame update
     void Start()
     {
+        invincible = false;
+        healthMax = health;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -34,6 +43,23 @@ public class Player : MonoBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             weaponParent.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+    }
+
+    public void TakeDamage(int deltaHealth) {
+        if(!invincible) {
+            StartCoroutine(DoInvincibility(1f));
+            health -= deltaHealth;
+            healthBar.value = health / (float)healthMax;
+            if (health <= 0) {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    IEnumerator DoInvincibility(float delay) {
+        invincible = true;
+        yield return new WaitForSeconds(delay);
+        invincible = false;
     }
 
     void FixedUpdate() {
