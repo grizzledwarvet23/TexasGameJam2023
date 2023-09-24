@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Trade : MonoBehaviour
 {
+    //GameManager variables
+    public int dayCount;
     public int currentWeapon;
     public int nextWeapon;
     public int currentRarity;
     public int nextRarity;
-
-    public int dayCount;
 
     // Start is called before the first frame update
     void Start()
