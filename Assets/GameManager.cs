@@ -22,6 +22,13 @@ public class GameManager : MonoBehaviour
     public int nextRarity = 1;
 
     public int dayCount = 1;
+    public int enemyHP = 5;
+    public float enemyDamage = 1;
+
+    public int charHP = 100;
+    public int charDamage = 1;
+
+    public int lie_prob = 0;
 
     public float widestCamera;
     public float narrowestCamera;
