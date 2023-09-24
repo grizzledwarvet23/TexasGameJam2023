@@ -51,17 +51,17 @@ public class WeaponGenerator : MonoBehaviour
         //base on wave number (from 1 to 10), lieProbability is lerp from 30 to 80
         lieProbability = Mathf.Lerp(0.3f, 0.8f, gm.currentWave / 10f);
 
+        Debug.Log(lieProbability);
+
 
 
         // GameObject weapon = null;GameObject weapon = null;
         if(gm.currentWave <= 10) {
-            if(gm.currentWave <= 3) {
-                int rand = Random.Range(0, GoodWeapons.Length);
-                Instantiate(GoodWeapons[rand], transform.position, Quaternion.identity);
-            } else {
+             //else {
                 //choose bad weapon based on lie probability. so if lie probability is 30, then 30% chance of getting a bad weapon
                 //generate float between 0 and 1
                 float rand = Random.Range(0f, 1f);
+                Debug.Log(rand);
                 if(rand < lieProbability) {
                     //choose bad weapon
                     int rand2 = Random.Range(0, badWeapons.Length);
@@ -74,7 +74,7 @@ public class WeaponGenerator : MonoBehaviour
                     badChoice = false;
                 }
                 
-            }
+            //}
             nameToChoose = weaponNames[Random.Range(0, weaponNames.Length)];
             //Weapon weaponScript is weapon's child, which has Weapon script
             Weapon weaponScript = weaponParent.GetComponentInChildren<Weapon>();
@@ -101,6 +101,8 @@ public class WeaponGenerator : MonoBehaviour
                     // weaponTwoImage.sprite = gunImage;
                     break;
             }
+
+            
 
 
 

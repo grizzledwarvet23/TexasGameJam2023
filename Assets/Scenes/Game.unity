@@ -21342,7 +21342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.977089, y: -0.11261, z: -10}
+  m_LocalPosition: {x: 9.998327, y: -0.11261, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42301,7 +42301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesParent: {fileID: 1848071787}
-  enemies: []
+  enemies:
+  - {fileID: 2443755814422765402, guid: da7c50ba551f35a42acbe1176e01c06f, type: 3}
   transformsParent: {fileID: 76022392}
   waveDuration: 1
 --- !u!1 &1430332132
@@ -73649,7 +73650,7 @@ MonoBehaviour:
   - {fileID: 2095720419}
   currentWave: 1
   weapon_types: []
-  currentWeapon: 1
+  currentWeapon: {fileID: 0}
   currentRarity: 1
   nextRarity: 1
   dayCount: 1

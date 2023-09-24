@@ -134,6 +134,8 @@ MonoBehaviour:
   attackDuration: 0.25
   attackSound: {fileID: 7518909592471720671}
   slasher: 1
+  type: Stick
+  attackAmount: 1
 --- !u!61 &7518909592471720669
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -225,9 +225,9 @@ MonoBehaviour:
   - {fileID: 2107047650527065908, guid: bea7585388f11ce49bd393c464dae765, type: 3}
   - {fileID: 956165695128718061, guid: 65cdce8233d30804c99576288f03019d, type: 3}
   badWeapons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2107047650527065908, guid: bea7585388f11ce49bd393c464dae765, type: 3}
+  - {fileID: 502053131983378957, guid: a7f813ac98c085143a71f6007c5ad902, type: 3}
+  - {fileID: 956165695128718061, guid: 65cdce8233d30804c99576288f03019d, type: 3}
   weaponNames:
   - MALICE
   - Touch of Death
@@ -669,13 +669,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 11500000, guid: ceb76ccbea3f24976b608f9cb4ec845d, type: 3}
-        m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 833820350}
+        m_TargetAssemblyTypeName: Trade, Assembly-CSharp
+        m_MethodName: TradeItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -719,6 +719,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826188886}
   m_CullTransparentMesh: 1
+--- !u!1 &833820349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833820351}
+  - component: {fileID: 833820350}
+  m_Layer: 0
+  m_Name: Trade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &833820350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833820349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb76ccbea3f24976b608f9cb4ec845d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayCount: 0
+  currentWeapon: 0
+  currentRarity: 0
+  nextRarity: 0
+  lie_prob: 0
+  charDamage: 0
+  weaponGenerator: {fileID: 235444841}
+--- !u!4 &833820351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833820349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871198292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1418448035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1444,6 +1495,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 833820350}
+        m_TargetAssemblyTypeName: Trade, Assembly-CSharp
+        m_MethodName: AntiTrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -46,6 +46,8 @@ public class Trade : MonoBehaviour
 
     public void TradeItem() {
         int oldDamage = GameManager.instance.damageToDo;
+        Debug.Log("instance: " + GameManager.instance);
+        Debug.Log("gen: " + weaponGenerator);
         GameManager.instance.currentWeapon = weaponGenerator.weaponParent;
         GameManager.instance.justTraded = true;
         if(weaponGenerator.badChoice) {

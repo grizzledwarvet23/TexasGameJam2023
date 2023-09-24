@@ -91,6 +91,21 @@ public class GameManager : MonoBehaviour
             vcam.m_Lens.OrthographicSize = cameraSize;
             Debug.Log("Yo " + cameraSize);
         }
+        //if scene name is "Menu", just 0 out all the variables
+        if(scene.name == "Menu") {
+            currentWave = 1;
+            currentRarity = 1;
+            nextRarity = 1;
+            dayCount = 1;
+            enemyHP = 5;
+            enemyDamage = 1;
+            charHP = 100;
+            charDamage = 1;
+            lie_prob = 0;
+            justTraded = false;
+            gotBadWeapon = false;
+            damageToDo = 1;
+        }
 
 
     }

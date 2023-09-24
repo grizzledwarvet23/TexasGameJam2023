@@ -23,14 +23,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         if(GameManager.instance.justTraded && weaponParent != null) {
+            Destroy(weaponParent);
             weaponParent = GameManager.instance.currentWeapon;
             //instantiate weapon parent as a child of this player
             weaponParent = Instantiate(weaponParent, transform.position, Quaternion.identity);
             weaponParent.transform.parent = transform;
-            if(GameManager.instance.gotBadWeapon) {
+            // if(GameManager.instance.gotBadWeapon) {
                 weapon = weaponParent.GetComponentInChildren<Weapon>();
+
                 weapon.SetDamage( GameManager.instance.damageToDo);
-            }
 
         } else {
             weapon = weaponParent.GetComponentInChildren<Weapon>();
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour
     }
 
     void RotateWeapon() {
-        if(weapon.GetType() == "Melee") {
+        if(weapon.GetType() == "Sword" || weapon.GetType() == "Spear" || weapon.GetType() == "Stick" ) {
             //cast weapon to MeleeWeapon
             MeleeWeapon meleeWeapon = (MeleeWeapon)weapon;
             if(!meleeWeapon.isAttacking) {
