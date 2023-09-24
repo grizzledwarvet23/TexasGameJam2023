@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private int healthMax;
 
     private bool invincible = false;
+
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour
         invincible = false;
         healthMax = health;
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); 
     }
 
     void Update() {
@@ -91,6 +94,9 @@ public class Player : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(x * xSpeed, y * ySpeed);
+
+        animator.SetInteger("x_dir", (int)x);
+        animator.SetInteger("y_dir", (int)y);
     }
     
 }
