@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50de48b0227928548bfe69a7cbbc7e25
+guid: 6c1e3e7c09d9f75469f67728673f3ca6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: run_quet_0
+      name: up_quet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e608c5a1d073245449ede0be9ab182de
-      internalID: 1778556518
+      spriteID: bae5cd09a2f8027418b37b7f6a38253a
+      internalID: -1303106330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_quet_1
+      name: up_quet_1
       rect:
         serializedVersion: 2
         x: 202
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cee0be54ed193d4482318f55bbbbe6d
-      internalID: 1577191409
+      spriteID: e98d0cbd16a88ec4595d8144828ad094
+      internalID: -1773624706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_quet_2
+      name: up_quet_2
       rect:
         serializedVersion: 2
         x: 404
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c820684ad735f24ea934e4c6fc1db9a
-      internalID: -1063041167
+      spriteID: 0dc13c1f5992c7143b5d0c67a270c62e
+      internalID: 2100067552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_quet_3
+      name: up_quet_3
       rect:
         serializedVersion: 2
         x: 606
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7505a8d081f26e4a9958ba958335bbb
-      internalID: -1170967700
+      spriteID: 9e19662c1a1d0824f9a631622172c8c9
+      internalID: 2026286893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_quet_4
+      name: up_quet_4
       rect:
         serializedVersion: 2
         x: 808
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad82aac76fea0ec4fae5d6662fa43d06
-      internalID: 759361677
+      spriteID: bc0ea7b73133f14439e99b33f7f66ad0
+      internalID: 252896076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_quet_5
+      name: up_quet_5
       rect:
         serializedVersion: 2
         x: 1010
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e948cad5fedd834189c86caa7ceb6da
-      internalID: -1517285590
+      spriteID: cda64e2d4d9f6a84aba0f0ba6bafc46d
+      internalID: 362183180
       vertices: []
       indices: 
       edges: []
@@ -253,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      run_quet_3: -1170967700
-      run_quet_0: 1778556518
-      run_quet_5: -1517285590
-      run_quet_4: 759361677
-      run_quet_1: 1577191409
-      run_quet_2: -1063041167
+      up_quet_3: 2026286893
+      up_quet_0: -1303106330
+      up_quet_1: -1773624706
+      up_quet_2: 2100067552
+      up_quet_4: 252896076
+      up_quet_5: 362183180
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50de48b0227928548bfe69a7cbbc7e25
+guid: 74cb56873d68dcf47aa7d71a1806852f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,133 +115,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: run_quet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e608c5a1d073245449ede0be9ab182de
-      internalID: 1778556518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: run_quet_1
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cee0be54ed193d4482318f55bbbbe6d
-      internalID: 1577191409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: run_quet_2
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c820684ad735f24ea934e4c6fc1db9a
-      internalID: -1063041167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: run_quet_3
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7505a8d081f26e4a9958ba958335bbb
-      internalID: -1170967700
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: run_quet_4
-      rect:
-        serializedVersion: 2
-        x: 808
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad82aac76fea0ec4fae5d6662fa43d06
-      internalID: 759361677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: run_quet_5
-      rect:
-        serializedVersion: 2
-        x: 1010
-        y: 0
-        width: 202
-        height: 202
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e948cad5fedd834189c86caa7ceb6da
-      internalID: -1517285590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -252,13 +126,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      run_quet_3: -1170967700
-      run_quet_0: 1778556518
-      run_quet_5: -1517285590
-      run_quet_4: 759361677
-      run_quet_1: 1577191409
-      run_quet_2: -1063041167
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
