@@ -10,8 +10,18 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    
     public GameObject[] waveTiles;
     public int currentWave = 1;
+
+    public GameObject[] weapon_types;
+    public int currentWeapon = 1;
+
+    public int currentRarity = 1;
+
+    public int nextRarity = 1;
+
+    public int dayCount = 1;
 
     public float widestCamera;
     public float narrowestCamera;
@@ -53,6 +63,7 @@ public class GameManager : MonoBehaviour
             }
             //remaining set to false:
             waveTiles[currentWave - 1].SetActive(true);
+            weapon_types[currentWeapon - 1].SetActive(true);
             vcam = FindObjectOfType<CinemachineVirtualCamera>();
             float lerpValue = (float)currentWave / (float)waveTiles.Length;
             float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
