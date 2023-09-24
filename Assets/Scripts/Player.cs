@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int deltaHealth) {
         if(!invincible) {
             StartCoroutine(DoInvincibility(1f));
+            StartCoroutine(DoFlashing(1f));
             health -= deltaHealth;
             healthBar.value = health / (float)healthMax;
             if (health <= 0) {
@@ -67,9 +68,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator DoFlashing(float delay) {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        for(int i = 0; i < 5; i++) {
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0f);
+            yield return new WaitForSeconds(delay/10);
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(delay/10);
+        }
+    }
+
     IEnumerator DoInvincibility(float delay) {
         invincible = true;
+        //set layer to the one called "Invulnerable"
+        gameObject.layer = 8;
         yield return new WaitForSeconds(delay);
+        gameObject.layer = 0;
         invincible = false;
     }
 

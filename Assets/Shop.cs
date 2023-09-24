@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!activated && enemiesParent.childCount == 0) {
+        if(!activated && enemiesParent.childCount == 0 && EnemySpawner.doneSpawning) {
             activated = true;
         }
         
