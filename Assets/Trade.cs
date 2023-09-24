@@ -17,7 +17,7 @@ public class Trade : MonoBehaviour
         int RadNum = Random.Range(1,6);
         nextWeapon = RadNum;
 
-        if (dayCount % 2 == 1){
+        if (dayCount % 2 == 1 || currentWeapon == nextWeapon){
             nextRarity++;
         }
     }
