@@ -13,6 +13,8 @@ Size: 36 PT
 
 ==========
 
+IMPORTANT: Weapon Rarity + Weapon Name should never exceed health bar width — if it's too long, it should wrap onto a new line
+
 ——————————
 Weapon PT 1
 ——————————
