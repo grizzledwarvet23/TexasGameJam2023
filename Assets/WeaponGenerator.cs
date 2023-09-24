@@ -49,7 +49,7 @@ public class WeaponGenerator : MonoBehaviour
         GameManager gm = GameManager.instance;
 
         //base on wave number (from 1 to 10), lieProbability is lerp from 30 to 80
-        lieProbability = Mathf.Lerp(0.3f, 0.8f, gm.currentWave / 10f);
+        lieProbability = Mathf.Lerp(0.3f, 0.7f, gm.currentWave / 10f);
 
         Debug.Log(lieProbability);
 
@@ -60,18 +60,25 @@ public class WeaponGenerator : MonoBehaviour
              //else {
                 //choose bad weapon based on lie probability. so if lie probability is 30, then 30% chance of getting a bad weapon
                 //generate float between 0 and 1
-                float rand = Random.Range(0f, 1f);
-                Debug.Log(rand);
-                if(rand < lieProbability) {
-                    //choose bad weapon
-                    int rand2 = Random.Range(0, badWeapons.Length);
-                    weaponParent = badWeapons[rand2];
-                    badChoice = true;
-                } else {
-                    //choose good weapon
+
+                if(gm.currentWave <= 3) {
                     int rand2 = Random.Range(0, GoodWeapons.Length);
                     weaponParent = GoodWeapons[rand2]; //use type for the thing
                     badChoice = false;
+                } else {
+                    float rand = Random.Range(0f, 1f);
+                    Debug.Log(rand);
+                    if(rand < lieProbability) {
+                        //choose bad weapon
+                        int rand2 = Random.Range(0, badWeapons.Length);
+                        weaponParent = badWeapons[rand2];
+                        badChoice = true;
+                    } else {
+                        //choose good weapon
+                        int rand2 = Random.Range(0, GoodWeapons.Length);
+                        weaponParent = GoodWeapons[rand2]; //use type for the thing
+                        badChoice = false;
+                    }
                 }
                 
             //}
@@ -102,7 +109,7 @@ public class WeaponGenerator : MonoBehaviour
                     break;
             }
 
-            
+
 
 
 
