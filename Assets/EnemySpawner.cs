@@ -15,20 +15,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyThree;
     public GameObject enemyFour;
 
-    public Vector2[] topXSpawnPoints;
-    public float[] topYSpawnPoint;
+    public GameObject transformsParent;
 
-    public Vector2[] bottomXSpawnPoints;
-    public float[] bottomYSpawnPoint;
-
-    public Vector2[] rightYSpawnPoints;
-    public float[] rightXSpawnPoint;
-
-    public Vector2[] leftYSpawnPointsOne;
-    public float[] leftXSpawnPointOne;
-
-    public Vector2[] leftYSpawnPointsTwo;
-    public float[] leftXSpawnPointTwo;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +31,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies() {
         yield return new WaitForSeconds(spawnDelay);
+        //spawn enemies in the corresponding bounds:
+
     }
 
     
