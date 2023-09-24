@@ -301,6 +301,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9338818194e244ed2bc87191ae106d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayCount: 0
+  enemyHP: 0
+  enemyDamage: 0
+  lie_prob: 0
+  blackFade: {fileID: 239043124}
 --- !u!1001 &368436717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,6 +722,11 @@ MonoBehaviour:
   currentRarity: 1
   nextRarity: 1
   dayCount: 1
+  enemyHP: 5
+  enemyDamage: 1
+  charHP: 100
+  charDamage: 1
+  lie_prob: 0
   widestCamera: 7
   narrowestCamera: 2.6
   vcam: {fileID: 0}
