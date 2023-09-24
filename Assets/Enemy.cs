@@ -26,6 +26,10 @@ public class Enemy : MonoBehaviour
 
     private bool collidingWithPlayer = false;
 
+    public AudioSource hitSound;
+
+    bool dying = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,23 +42,25 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
-        bool foundPlayer = false;
-        foreach (Collider2D collider in colliders) {
-            if (collider.gameObject.tag == "Player") {
-                //move towards player
-                collider.gameObject.GetComponent<Player>().TakeDamage(1);
-                foundPlayer = true;
+        if(!dying) {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+            bool foundPlayer = false;
+            foreach (Collider2D collider in colliders) {
+                if (collider.gameObject.tag == "Player") {
+                    //move towards player
+                    collider.gameObject.GetComponent<Player>().TakeDamage(1);
+                    foundPlayer = true;
+                }
             }
-        }
 
-        if(foundPlayer)
-        {
-            collidingWithPlayer = true;
-        }
-        else
-        {
-            collidingWithPlayer = false;
+            if(foundPlayer)
+            {
+                collidingWithPlayer = true;
+            }
+            else
+            {
+                collidingWithPlayer = false;
+            }
         }
         
     }
@@ -66,20 +72,24 @@ public class Enemy : MonoBehaviour
     }
 
     void FixedUpdate() {
-        //get direction to player, normalize it, and multiply by speed
-        if(collidingWithPlayer) {
+        if(dying) {
             rb.velocity = Vector2.zero;
-        }
-        else if(player != null && canTrack) {
-            Vector2 dir = player.transform.position - transform.position;
-            dir.Normalize();
-            rb.velocity = dir * speed;
-            //also consider we dont want to bump into other enemies.
-            //so we need to check if there are any enemies in the direction we are going
-            //the parent has a list of all enemies. we can check if any of them are in the direction we are going
-            //if they are, we can set the direction to be perpendicular to the direction we are going:
-            StartCoroutine(SetCanTrack(trackDelay)); 
+        } else {
+            //get direction to player, normalize it, and multiply by speed
+            if(collidingWithPlayer) {
+                rb.velocity = Vector2.zero;
+            }
+            else if(player != null && canTrack) {
+                Vector2 dir = player.transform.position - transform.position;
+                dir.Normalize();
+                rb.velocity = dir * speed;
+                //also consider we dont want to bump into other enemies.
+                //so we need to check if there are any enemies in the direction we are going
+                //the parent has a list of all enemies. we can check if any of them are in the direction we are going
+                //if they are, we can set the direction to be perpendicular to the direction we are going:
+                StartCoroutine(SetCanTrack(trackDelay)); 
 
+            }
         }
 
     }
@@ -94,11 +104,20 @@ public class Enemy : MonoBehaviour
         //textmeshpro text. set the text to deltaHealth
         GameObject marker = Instantiate(damageMarker, transform.position + new Vector3(Random.Range(-2f, -0.5f), Random.Range(0f, 1f), 0), Quaternion.identity);
         marker.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = deltaHealth.ToString();
-        
+        hitSound.Play();
         health -= deltaHealth;
         if (health <= 0) {
-            Destroy(gameObject);
+            //set sprite renderer and collider to false
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+            dying = true;
+            StartCoroutine(DestroySelf(1f));
         }
+    }
+
+    IEnumerator DestroySelf(float delay) {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 }
 

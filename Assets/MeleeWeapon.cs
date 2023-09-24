@@ -12,6 +12,8 @@ public class MeleeWeapon : MonoBehaviour, Weapon
     private bool justAttacked = false;
 
     private BoxCollider2D boxCollider;
+
+    public bool slasher = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +75,18 @@ public class MeleeWeapon : MonoBehaviour, Weapon
         transform.parent.transform.Rotate(Vector3.forward * 45);
     }
 
+    IEnumerator ThrustSword(float delay) {
+        //instead of rotate like RotateSword, just move forward and back
+        for (int i = 0; i < 10; i++) {
+            transform.Translate(Vector3.right * 0.1f);
+            yield return new WaitForSeconds(delay/25);
+        }
+        for (int i = 0; i < 10; i++) {
+            transform.Translate(Vector3.left * 0.1f);
+            yield return new WaitForSeconds(delay/25);
+        }
+    }
+
     public string GetType() {
         return "Melee";
     }
@@ -84,7 +98,11 @@ public class MeleeWeapon : MonoBehaviour, Weapon
             attackSound.Play();
             StartCoroutine(SetAttacking(false, attackDuration));
             //StartCoroutine(MoveWeaponForward(attackDuration));
-            StartCoroutine(RotateSword(attackDuration));
+            if(slasher) {
+                StartCoroutine(RotateSword(attackDuration));
+            } else {
+                StartCoroutine(ThrustSword(attackDuration));
+            }
         }
     }
 
