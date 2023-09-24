@@ -30,12 +30,16 @@ public class Enemy : MonoBehaviour
 
     bool dying = false;
 
+    private GameObject parent;
+
     // Start is called before the first frame update
     void Start()
     {
         //player is find tag Player
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        //get this objects parent
+        parent = transform.parent.gameObject;
 
     }
 
@@ -82,7 +86,29 @@ public class Enemy : MonoBehaviour
             else if(player != null && canTrack) {
                 Vector2 dir = player.transform.position - transform.position;
                 dir.Normalize();
-                rb.velocity = dir * speed;
+                Vector2 motionVector = dir * speed;
+
+                //iterate through enemies, the child of the parent. find the closest one that is not this one. to the motion vector, add direction away from that enemy
+                //this will make it so that enemies dont bump into each other
+                float minDistance = Mathf.Infinity;
+                GameObject closestEnemy = null;
+                foreach(Transform child in parent.transform) {
+                    if(child.gameObject != gameObject) {
+                        float distance = Vector2.Distance(child.position, transform.position);
+                        if(distance < minDistance) {
+                            minDistance = distance;
+                            closestEnemy = child.gameObject;
+                        }
+                    }
+                }
+                if(closestEnemy != null) {
+                    Vector2 awayFromEnemy = transform.position - closestEnemy.transform.position;
+                    awayFromEnemy.Normalize();
+                    motionVector += (0.5f) * speed * awayFromEnemy;
+                }
+                rb.velocity = motionVector;
+
+
                 //also consider we dont want to bump into other enemies.
                 //so we need to check if there are any enemies in the direction we are going
                 //the parent has a list of all enemies. we can check if any of them are in the direction we are going
