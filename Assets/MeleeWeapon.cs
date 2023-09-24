@@ -61,9 +61,9 @@ public class MeleeWeapon : MonoBehaviour, Weapon
 
     IEnumerator RotateSword(float delay) {
         //start sword a little back
-        transform.parent.transform.Rotate(Vector3.back * 45);
+        transform.parent.transform.Rotate(Vector3.forward * 45);
         for (int i = 0; i < 60; i++) {
-            transform.parent.transform.Rotate(Vector3.forward * (9 / 6.0f));
+            transform.parent.transform.Rotate(Vector3.back * (9 / 3.0f));
 
             yield return new WaitForSeconds(delay/60);
         }
