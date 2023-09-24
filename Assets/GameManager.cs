@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    
     public GameObject[] waveTiles;
     public int currentWave = 1;
+
+    public GameObject[] weapon_types;
+    public int currentWeapon = 1;
 
     public float widestCamera;
     public float narrowestCamera;
