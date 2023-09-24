@@ -10,12 +10,13 @@ public class EnemySpawner : MonoBehaviour
     private float spawnDelay;
     public static bool doneSpawning = false;
 
-    public GameObject enemyOne;
-    public GameObject enemyTwo;
-    public GameObject enemyThree;
-    public GameObject enemyFour;
+    public GameObject[] enemies;
 
     public GameObject transformsParent;
+    private Transform currentTransform;
+
+    public float waveDuration = 60; //60 seconds
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,19 @@ public class EnemySpawner : MonoBehaviour
         } else {
             spawnDelay = 0.5f;
         }
+        //get child of transformsParent which is named the current wave
+        currentTransform = transformsParent.transform.GetChild(GameManager.instance.currentWave - 1);
         StartCoroutine(SpawnEnemies());
+        StartCoroutine(EndWave());
+
     }
+
+    IEnumerator EndWave() {
+        yield return new WaitForSeconds(waveDuration);
+        //end wave
+        doneSpawning = true;
+    }
+
 
     IEnumerator SpawnEnemies() {
         yield return new WaitForSeconds(spawnDelay);
@@ -36,18 +48,38 @@ public class EnemySpawner : MonoBehaviour
         //those children have children TL, TR, BL, BR representing the corners of the bounds
         //spawn the enemy  randomly at the bounds:
         if(GameManager.instance.currentWave == 1) {
-            //random number from 1 to 4
-            int enemyNum = Random.Range(1, 5);
-            GameObject enemy;
-            if(enemyNum == 1) {
-                enemy = Instantiate(enemyOne, transformsParent.transform.GetChild(0).GetChild(0).position, Quaternion.identity);
-            } else if(enemyNum == 2) {
-                enemy = Instantiate(enemyTwo, transformsParent.transform.GetChild(0).GetChild(1).position, Quaternion.identity);
-            } else if(enemyNum == 3) {
-                enemy = Instantiate(enemyThree, transformsParent.transform.GetChild(0).GetChild(2).position, Quaternion.identity);
-            } else {
-                enemy = Instantiate(enemyFour, transformsParent.transform.GetChild(0).GetChild(3).position, Quaternion.identity);
+            //choose random enemy from enemies array
+            GameObject enemy = enemies[Random.Range(0, enemies.Length)];
+            //curretnTransform has four children: TL, TR, BL, BR
+            //these mean top left, top right, bottom left, bottom right
+            //spawn the enemies either between top left and top right, top left and bottom left, top right and bottom right, or bottom left and bottom right./
+            //randomly choose the 4 sides then randomly choose a point on that side
+            int side = Random.Range(0, 4);
+            //top side
+            if(side == 0) {
+                //choose random x between TL and TR
+                float x = Random.Range(currentTransform.GetChild(0).position.x, currentTransform.GetChild(1).position.x);
+                //spawn enemy at (x, y) where y is the y of TL
+                Instantiate(enemy, new Vector3(x, currentTransform.GetChild(0).position.y, 0), Quaternion.identity, enemiesParent.transform);
+            } else if (side == 1) {
+                //choose random x between BL and BR
+                float x = Random.Range(currentTransform.GetChild(2).position.x, currentTransform.GetChild(3).position.x);
+                //spawn enemy at (x, y) where y is the y of BL
+                Instantiate(enemy, new Vector3(x, currentTransform.GetChild(2).position.y, 0), Quaternion.identity, enemiesParent.transform);
+            } 
+            // else if (side == 2) {
+            //     //choose random y between TL and BL
+            //     float y = Random.Range(currentTransform.GetChild(0).position.y, currentTransform.GetChild(2).position.y);
+            //     //spawn enemy at (x, y) where x is the x of TL
+            //     Instantiate(enemy, new Vector3(currentTransform.GetChild(0).position.x, y, 0), Quaternion.identity, enemiesParent.transform);
+            // } 
+            else {
+                //choose random y between TR and BR
+                float y = Random.Range(currentTransform.GetChild(1).position.y, currentTransform.GetChild(3).position.y);
+                //spawn enemy at (x, y) where x is the x of TR
+                Instantiate(enemy, new Vector3(currentTransform.GetChild(1).position.x, y, 0), Quaternion.identity, enemiesParent.transform);
             }
+            
         }
 
     }
