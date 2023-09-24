@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : MonoBehaviour, Weapon
 {
     [System.NonSerialized]
     public bool isAttacking = false;
@@ -71,6 +71,10 @@ public class MeleeWeapon : MonoBehaviour
         // }
         //reset sword to original position
         transform.parent.transform.Rotate(Vector3.forward * 45);
+    }
+
+    public string GetType() {
+        return "Melee";
     }
 
     public void Attack() {
