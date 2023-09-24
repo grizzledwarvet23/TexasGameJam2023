@@ -22,8 +22,21 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //weapon s get child of weapon parent
-        weapon = weaponParent.GetComponentInChildren<Weapon>();
+        if(GameManager.instance.justTraded && weaponParent != null) {
+            Destroy(weaponParent);
+            weaponParent = GameManager.instance.currentWeapon;
+            //instantiate weapon parent as a child of this player
+            weaponParent = Instantiate(weaponParent, transform.position, Quaternion.identity);
+            weaponParent.transform.parent = transform;
+            // if(GameManager.instance.gotBadWeapon) {
+                weapon = weaponParent.GetComponentInChildren<Weapon>();
+
+                weapon.SetDamage( GameManager.instance.damageToDo);
+
+        } else {
+            weapon = weaponParent.GetComponentInChildren<Weapon>();
+
+        }
         invincible = false;
         healthMax = health;
         rb = GetComponent<Rigidbody2D>();
@@ -42,7 +55,7 @@ public class Player : MonoBehaviour
     }
 
     void RotateWeapon() {
-        if(weapon.GetType() == "Melee") {
+        if(weapon.GetType() == "Sword" || weapon.GetType() == "Spear" || weapon.GetType() == "Stick" ) {
             //cast weapon to MeleeWeapon
             MeleeWeapon meleeWeapon = (MeleeWeapon)weapon;
             if(!meleeWeapon.isAttacking) {

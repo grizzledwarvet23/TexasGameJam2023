@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int currentWave = 1;
 
     public GameObject[] weapon_types;
-    public int currentWeapon = 1;
+    public GameObject currentWeapon;
 
     public int currentRarity = 1;
 
@@ -31,7 +31,18 @@ public class GameManager : MonoBehaviour
     public int lie_prob = 0;
 
     public float widestCamera;
+    
     public float narrowestCamera;
+
+    [System.NonSerialized]
+    public bool justTraded = false;
+
+    [System.NonSerialized]
+    public bool gotBadWeapon;
+
+    [System.NonSerialized]
+    public int damageToDo = 1;
+
 
     //cinemachine virtual camera
     public CinemachineVirtualCamera vcam;
@@ -62,25 +73,41 @@ public class GameManager : MonoBehaviour
                 for(int i = 0; i < walls.transform.childCount; i++) {
                     waveTiles[i] = walls.transform.GetChild(i).gameObject;
                 }
-            }
+                
 
-            for(int i = 0; i < waveTiles.Length; i++) 
-            {
-                waveTiles[i].SetActive(false);
+                for(int i = 0; i < waveTiles.Length; i++) 
+                {
+                    waveTiles[i].SetActive(false);
+                }
+                //remaining set to false:
+                waveTiles[currentWave - 1].SetActive(true);
             }
-            //remaining set to false:
-            waveTiles[currentWave - 1].SetActive(true);
-            if(currentWeapon < weapon_types.Length) {
-                weapon_types[currentWeapon - 1].SetActive(true);
-            }
+            // if(currentWeapon < weapon_types.Length) {
+            //     weapon_types[currentWeapon - 1].SetActive(true);
+            // }
             vcam = FindObjectOfType<CinemachineVirtualCamera>();
             float lerpValue = (float)currentWave / (float)waveTiles.Length;
             float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
             vcam.m_Lens.OrthographicSize = cameraSize;
             Debug.Log("Yo " + cameraSize);
         }
+        //if scene name is "Menu", just 0 out all the variables
+        if(scene.name == "Menu") {
+            currentWave = 1;
+            currentRarity = 1;
+            nextRarity = 1;
+            dayCount = 1;
+            enemyHP = 5;
+            enemyDamage = 1;
+            charHP = 100;
+            charDamage = 1;
+            lie_prob = 0;
+            justTraded = false;
+            gotBadWeapon = false;
+            damageToDo = 1;
+        }
 
-       
+
     }
 
     
@@ -92,17 +119,23 @@ public class GameManager : MonoBehaviour
         {
             vcam = FindObjectOfType<CinemachineVirtualCamera>();
         }
-        for(int i = 0; i < waveTiles.Length; i++) 
-        {
-            waveTiles[i].SetActive(false);
+        if(waveTiles[0] != null) {
+            for(int i = 0; i < waveTiles.Length; i++) 
+            {
+                waveTiles[i].SetActive(false);
+            }
+            
+            //remaining set to false:
+            waveTiles[currentWave - 1].SetActive(true);
         }
-        //remaining set to false:
-        waveTiles[currentWave - 1].SetActive(true);
+        if(vcam != null) {
+            //based on wave, lerp from widest to narrowest
+            float lerpValue = (float)currentWave / (float)waveTiles.Length;
+            float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
+            vcam.m_Lens.OrthographicSize = cameraSize;
+        }
 
-        //based on wave, lerp from widest to narrowest
-        float lerpValue = (float)currentWave / (float)waveTiles.Length;
-        float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
-        vcam.m_Lens.OrthographicSize = cameraSize;
+
     }
 
     // Update is called once per frame

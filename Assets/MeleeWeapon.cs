@@ -14,6 +14,10 @@ public class MeleeWeapon : MonoBehaviour, Weapon
     private BoxCollider2D boxCollider;
 
     public bool slasher = true;
+
+    public string type;
+
+    public int attackAmount = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +39,7 @@ public class MeleeWeapon : MonoBehaviour, Weapon
             if (enemy != null) {
                 justAttacked = true;
                 StartCoroutine(SetJustAttacked(false, 0.1f));
-                enemy.TakeDamage(1);
+                enemy.TakeDamage(attackAmount);
             }
         }
     }
@@ -88,8 +92,15 @@ public class MeleeWeapon : MonoBehaviour, Weapon
     }
 
     public string GetType() {
-        return "Melee";
+        return type;
     }
+
+    public void SetDamage(int damage) {
+        attackAmount = damage;
+    }
+
+
+
 
     public void Attack() {
         if(!isAttacking) {
