@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float xSpeed;
     public float ySpeed;
 
-    public MeleeWeapon weapon;
+    public Weapon weapon;
     public GameObject weaponParent;
 
     public Slider healthBar;
@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //weapon s get child of weapon parent
+        weapon = weaponParent.GetComponentInChildren<Weapon>();
         invincible = false;
         healthMax = health;
         rb = GetComponent<Rigidbody2D>();
@@ -37,7 +39,16 @@ public class Player : MonoBehaviour
     }
 
     void RotateWeapon() {
-        if(!weapon.isAttacking) {
+        if(weapon.GetType() == "Melee") {
+            //cast weapon to MeleeWeapon
+            MeleeWeapon meleeWeapon = (MeleeWeapon)weapon;
+            if(!meleeWeapon.isAttacking) {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 dir = mousePos - transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                weaponParent.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        } else {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 dir = mousePos - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
