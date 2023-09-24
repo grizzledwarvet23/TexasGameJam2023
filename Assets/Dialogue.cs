@@ -2,21 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
 
     public TextMeshProUGUI textComponent;
     public string[] lines;
+
+    public string positiveResponse;
+    public string negativeResponse;
+
+    private bool givingFinalResponse = false;
+    private bool goodResponse = false;
+
+    private bool isTransitioning = false;
+
+    public bool[] stopPoints; //corresponds to lines
     public float textSpeed;
 
     private int index;
+
+    public AudioSource blipSound;
+
+
+    public Animator blackFade;
+
+    public GameObject playButton, exitButton;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
-        StartDialogue();
+        blackFade.Play("FadeIn");
+
+        
+        //invoke start dialogue after 1 second
+        Invoke("StartDialogue", 1f);
     }
 
     // Update is called once per frame
@@ -24,14 +48,35 @@ public class Dialogue : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if (textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
+            if(!givingFinalResponse) {
+                if (textComponent.text != lines[index])
+                {
+                    StopAllCoroutines();
+                    textComponent.text = lines[index];
+                    if(!stopPoints[index]) {
+                        StartCoroutine(DoNextLine(1f));
+                    } else {
+                        if(!playButton.activeSelf) {
+                            playButton.SetActive(true);
+                            exitButton.SetActive(true);
+                        }
+                    }
+                }
+            } else {
+                if(goodResponse) {
+                    if(textComponent.text != positiveResponse) {
+                        StopAllCoroutines();
+                        textComponent.text = positiveResponse;
+                        StartCoroutine(EndDialogue());
+                    }
+                }
+                else {
+                    if(textComponent.text != negativeResponse) {
+                        StopAllCoroutines();
+                        textComponent.text = negativeResponse;
+                        StartCoroutine(EndDialogue());
+                    }
+                }
             }
         }
     }
@@ -42,14 +87,62 @@ public class Dialogue : MonoBehaviour
         StartCoroutine(TypeLine());
     }
 
+    IEnumerator EndDialogue() 
+    {
+        if(!isTransitioning) 
+        {
+            isTransitioning = true;
+            yield return new WaitForSeconds(1f);
+            blackFade.Play("FadeOut");
+            yield return new WaitForSeconds(1f);
+            LoadGameScene();
+        }
+        
+    }
+
     IEnumerator TypeLine()
     {
         //type each character
         foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
+            blipSound.Play();
             yield return new WaitForSeconds(textSpeed);
         }
+        if(!stopPoints[index]) {
+            StartCoroutine(DoNextLine(1f));
+        }
+        else if(!playButton.activeSelf) {
+            playButton.SetActive(true);
+            exitButton.SetActive(true);
+        }
+        //StartCoroutine(DoNextLine(1));
+    }
+
+    IEnumerator TypeLine(string line, bool isLastLine)
+    {
+        textComponent.text = string.Empty;
+        //type each character
+        foreach (char c in line.ToCharArray())
+        {
+            textComponent.text += c;
+            blipSound.Play();
+            yield return new WaitForSeconds(textSpeed);
+        }
+
+        if(isLastLine) {
+            StartCoroutine(EndDialogue());
+        }
+
+        
+   
+
+    }
+
+    IEnumerator DoNextLine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        NextLine();
     }
 
     void NextLine()
@@ -60,9 +153,32 @@ public class Dialogue : MonoBehaviour
             textComponent.text = string.Empty;
             StartCoroutine(TypeLine());
         }
-        else
+        // else
+        // {
+        //     gameObject.SetActive(false);
+        //     Invoke("LoadGameScene", 1f);
+
+        // }
+    }
+
+    public void HandlePlayerDecision(bool accepted)
+    {
+        givingFinalResponse = true;
+        if(accepted)
         {
-            gameObject.SetActive(false);
+            goodResponse = true;
+            StartCoroutine(TypeLine(positiveResponse, true));
+        } else {
+            goodResponse = false;
+            StartCoroutine(TypeLine(negativeResponse, true));
         }
+
+        //turn off buttons
+        playButton.SetActive(false);
+        exitButton.SetActive(false);
+    }
+
+    void LoadGameScene() {
+        SceneManager.LoadScene("Game");
     }
 }

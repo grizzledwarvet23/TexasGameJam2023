@@ -44,6 +44,8 @@ public class Shop : MonoBehaviour
 
     IEnumerator GoToShop() {
         //do transition, go to shop scene, etc.
+        GameManager.instance.currentWave = Mathf.Min(10, GameManager.instance.currentWave + 1);
+        yield return new WaitForSeconds(1f);
         blackFade.Play("FadeOut");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Shop");

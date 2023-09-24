@@ -37,6 +37,28 @@ public class GameManager : MonoBehaviour
     
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         Debug.Log("OnSceneLoaded: " + scene.name);
+        if(scene.name == "Game") {
+            //in the scene hierarchy, the gameobject "Grid" has child "Walls." waveTiles are assigned to the children of walls
+            //loop through and assign waveTiles to the children of walls
+            GameObject walls = GameObject.Find("Walls");
+            if(walls != null) {
+                for(int i = 0; i < walls.transform.childCount; i++) {
+                    waveTiles[i] = walls.transform.GetChild(i).gameObject;
+                }
+            }
+
+            for(int i = 0; i < waveTiles.Length; i++) 
+            {
+                waveTiles[i].SetActive(false);
+            }
+            //remaining set to false:
+            waveTiles[currentWave - 1].SetActive(true);
+            vcam = FindObjectOfType<CinemachineVirtualCamera>();
+            float lerpValue = (float)currentWave / (float)waveTiles.Length;
+            float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
+            vcam.m_Lens.OrthographicSize = cameraSize;
+        }
+
        
     }
 

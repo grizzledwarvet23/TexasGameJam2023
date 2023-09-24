@@ -29,7 +29,7 @@ public class MeleeWeapon : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (isAttacking && !justAttacked) {
             Enemy enemy = other.GetComponent<Enemy>();
-            Debug.Log("Enemy: " + enemy);
+            // Debug.Log("Enemy: " + enemy);
             if (enemy != null) {
                 justAttacked = true;
                 StartCoroutine(SetJustAttacked(false, 0.1f));
