@@ -118,11 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd15eab2646f55944ae6f45cea6ea46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  baseLineHealth: 3
   detectionWidth: 3.12
   detectionHeight: 1.13
   damageMarker: {fileID: 7149581573868470698, guid: 2b9d199dbb3f8fa4abb94abeccfca775, type: 3}
-  speed: 2
+  baseSpeed: 2
+  baseAttack: 1
   trackDelay: 1
   hitSound: {fileID: 6310229528310437866}
 --- !u!50 &2443755814422765409

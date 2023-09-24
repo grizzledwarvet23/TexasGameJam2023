@@ -14,6 +14,7 @@ public class RangedWeapon : MonoBehaviour, Weapon
     public AudioSource shootSound;
 
 
+
     public void Attack() {
         if(automatic) {}
         else {

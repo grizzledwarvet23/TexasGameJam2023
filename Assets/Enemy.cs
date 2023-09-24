@@ -5,7 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private int health = 5;
+    private int baseLineHealth = 3;
+
+    private int health;
 
     //create a circle area around enemy that detects player
     [SerializeField]
@@ -19,7 +21,14 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
 
-    public float speed = 2f;
+    public float baseSpeed = 2f;
+
+    public int baseAttack = 2;
+
+    private int attack;
+
+    private float speed = 2f;
+
 
     private Rigidbody2D rb;
 
@@ -38,6 +47,18 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int wave = GameManager.instance.currentWave;
+        //health is 2 to the power of (wave - 1), times baseline health\
+        health = (int) Mathf.Pow(1.5f, wave - 1) * baseLineHealth;
+        //print health
+        Debug.Log("enemy health: " + health);
+        speed = baseSpeed + (wave - 1) * 0.05f;
+
+
+        //attack should be 1.5 the attack of the previous wave
+        attack = (int) Mathf.Pow(1.5f, wave - 1) * baseAttack;
+        Debug.Log("Enemy attack: " + attack);
+
         //player is find tag Player
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
@@ -86,7 +107,7 @@ public class Enemy : MonoBehaviour
             foreach (Collider2D collider in colliders) {
                 if (collider.gameObject.tag == "Player") {
                     //move towards player
-                    collider.gameObject.GetComponent<Player>().TakeDamage(1);
+                    collider.gameObject.GetComponent<Player>().TakeDamage(attack);
                     foundPlayer = true;
                 }
             }
