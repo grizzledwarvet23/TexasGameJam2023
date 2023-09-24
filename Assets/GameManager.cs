@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
     public GameObject[] weapon_types;
     public int currentWeapon = 1;
 
+    public int currentRarity = 1;
+
+    public int nextRarity = 1;
+
+    public int dayCount = 1;
+
     public float widestCamera;
     public float narrowestCamera;
 
