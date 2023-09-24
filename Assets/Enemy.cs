@@ -9,7 +9,10 @@ public class Enemy : MonoBehaviour
 
     //create a circle area around enemy that detects player
     [SerializeField]
-    private float detectionRadius = 5f;
+    private float detectionWidth = 5f;
+    [SerializeField]
+    private float detectionHeight = 5f;
+    //private float detectionRadius = 5f;
 
     //this is a prefab
     public GameObject damageMarker;
@@ -43,11 +46,42 @@ public class Enemy : MonoBehaviour
 
     }
 
+    void Flip() {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+    
+
     // Update is called once per frame
     void Update()
     {
         if(!dying) {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+
+            if(player != null) {
+            if(player.transform.position.x < transform.position.x) {
+                //player is to the left of enemy
+                if(transform.localScale.x > 0) {
+                    Flip();
+                }
+            } else {
+                //player is to the right of enemy
+                if(transform.localScale.x < 0) {
+                    Flip();
+                }
+            }
+        }
+            // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
+            // bool foundPlayer = false;
+            // foreach (Collider2D collider in colliders) {
+            //     if (collider.gameObject.tag == "Player") {
+            //         //move towards player
+            //         collider.gameObject.GetComponent<Player>().TakeDamage(1);
+            //         foundPlayer = true;
+            //     }
+            // }
+            //instgead of using overlap circle, lets do a box:
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(detectionWidth, detectionHeight ), 0);
             bool foundPlayer = false;
             foreach (Collider2D collider in colliders) {
                 if (collider.gameObject.tag == "Player") {
@@ -123,7 +157,7 @@ public class Enemy : MonoBehaviour
     //draw it
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireCube(transform.position, new Vector3(detectionWidth, detectionHeight, 0));
     }
     public void TakeDamage(int deltaHealth) {
         //instantiate damage marker in a random position near enemy. it has a child canvas, which has a child Count which is
