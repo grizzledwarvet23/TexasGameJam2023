@@ -51,10 +51,6 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Shop");
         
-        
-
-
-           
     }
 
     void OnDrawGizmosSelected() {
