@@ -203,7 +203,6 @@ GameObject:
   - component: {fileID: 239043123}
   - component: {fileID: 239043122}
   - component: {fileID: 239043124}
-  - component: {fileID: 239043125}
   m_Layer: 5
   m_Name: BlackFade
   m_TagString: Untagged
@@ -289,18 +288,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &239043125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239043120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9338818194e244ed2bc87191ae106d6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &368436717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +542,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 9338818194e244ed2bc87191ae106d6c, type: 3}
+        m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &826188889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +716,11 @@ MonoBehaviour:
   currentRarity: 1
   nextRarity: 1
   dayCount: 1
+  enemyHP: 5
+  enemyDamage: 1
+  charHP: 100
+  charDamage: 1
+  lie_prob: 0
   widestCamera: 7
   narrowestCamera: 2.6
   vcam: {fileID: 0}
@@ -1260,6 +1264,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11500000, guid: 9338818194e244ed2bc87191ae106d6c, type: 3}
+        m_TargetAssemblyTypeName: Dialogue, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
