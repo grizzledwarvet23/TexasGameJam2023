@@ -11,6 +11,8 @@ public class RangedWeapon : MonoBehaviour, Weapon
 
     public float fireDelay;
 
+    public AudioSource shootSound;
+
 
     public void Attack() {
         if(automatic) {}
@@ -22,6 +24,7 @@ public class RangedWeapon : MonoBehaviour, Weapon
     void Fire() {
         //instantiate projectile prefab:
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        shootSound.Play();
     }
 
     public string GetType() {
