@@ -18,18 +18,21 @@ public class Trade : MonoBehaviour
     void Start()
     { 
         dayCount = GameManager.instance.dayCount;
-        int RadNum = Random.Range(1,6);
-        nextWeapon = RadNum;
+        int WeaponRadNum = Random.Range(1,6);
+        nextWeapon = WeaponRadNum;
 
-        //if (lie_prob)
+        int lieRadNum = Random.Range(0,100);
 
-        if (dayCount % 2 == 1 || currentWeapon == nextWeapon){
-            nextRarity++;
-        }
-        currentWeapon = nextWeapon;
-        if (currentRarity < nextRarity)
-        {
-            currentRarity = nextRarity;
+        if (lieRadNum < lie_prob){
+
+            if (dayCount % 2 == 1 || currentWeapon == nextWeapon){
+                nextRarity++;
+            }
+            GameManager.instance.currentWeapon = nextWeapon;
+            if (currentRarity < nextRarity)
+            {
+                GameManager.instance.currentRarity = nextRarity;
+            }
         }
     }
 

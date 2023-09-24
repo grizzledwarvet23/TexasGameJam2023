@@ -14,10 +14,10 @@ public class DayUpdate : MonoBehaviour
     {
         if (blackFade.GetCurrentAnimatorStateInfo(0).IsName("FadeOut"))
         {
-            dayCount++;
-            enemyHP *= 2;
-            enemyDamage *= 1.5f;
-            lie_prob += 10;
+            GameManager.instance.dayCount = dayCount + 1;
+            GameManager.instance.enemyHP = enemyHP * 2;
+            GameManager.instance.enemyDamage = enemyDamage * 1.5f;
+            GameManager.instance.lie_prob = lie_prob + 10;
         }      
     }
 }
