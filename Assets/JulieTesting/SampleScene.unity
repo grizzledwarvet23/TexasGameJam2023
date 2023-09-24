@@ -4547,7 +4547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: 4
   ySpeed: 4
-  weapon: {fileID: 1677737906}
   weaponParent: {fileID: 843629551}
   healthBar: {fileID: 1073007521}
   health: 10
@@ -16861,6 +16860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDuration: 0.25
   attackSound: {fileID: 1677737907}
+  slasher: 1
 --- !u!82 &1677737907
 AudioSource:
   m_ObjectHideFlags: 0
