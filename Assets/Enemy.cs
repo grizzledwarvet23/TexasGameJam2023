@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         health = (int) Mathf.Pow(1.5f, wave - 1) * baseLineHealth;
         //print health
         Debug.Log("enemy health: " + health);
-        speed = baseSpeed + (wave - 1) * 0.05f;
+        speed = baseSpeed + (wave - 1) * 0.15f;
 
 
         //attack should be 1.5 the attack of the previous wave

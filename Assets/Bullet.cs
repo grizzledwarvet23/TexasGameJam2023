@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
 
+    public int damage = 1;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -22,7 +24,7 @@ public class Bullet : MonoBehaviour
         if(other.tag == "Enemy") {
             Enemy enemy = other.GetComponent<Enemy>();
             if(enemy != null) {
-                enemy.TakeDamage(1);
+                enemy.TakeDamage(damage);
             }
         }
         Destroy(gameObject);
