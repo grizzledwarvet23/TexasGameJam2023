@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             }
             //remaining set to false:
             waveTiles[currentWave - 1].SetActive(true);
+            weapon_types[currentWeapon - 1].SetActive(true);
             vcam = FindObjectOfType<CinemachineVirtualCamera>();
             float lerpValue = (float)currentWave / (float)waveTiles.Length;
             float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Trade : MonoBehaviour
 {
+    public int currentWeapon;
+    public int nextWeapon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,6 @@ public class Trade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentWeapon = nextWeapon;
     }
 }
