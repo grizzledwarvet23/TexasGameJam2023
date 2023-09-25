@@ -49,7 +49,7 @@ public class WeaponGenerator : MonoBehaviour
         GameManager gm = GameManager.instance;
 
         //base on wave number (from 1 to 10), lieProbability is lerp from 30 to 80
-        lieProbability = Mathf.Lerp(0.3f, 0.7f, gm.currentWave / 10f);
+        lieProbability = Mathf.Lerp(0.2f, 0.7f, gm.currentWave / 10f);
 
         Debug.Log(lieProbability);
 
@@ -85,25 +85,34 @@ public class WeaponGenerator : MonoBehaviour
             nameToChoose = weaponNames[Random.Range(0, weaponNames.Length)];
             //Weapon weaponScript is weapon's child, which has Weapon script
             Weapon weaponScript = weaponParent.GetComponentInChildren<Weapon>();
+            singleWeaponText.text = "";
+            singleWeaponText.text = nameToChoose;
+
+            Debug.Log(weaponScript.GetType());
+            
 
             switch (weaponScript.GetType()) {
                 case "Sword":
                     singleWeaponImage.sprite = swordImage;
+                    Debug.Log("ONE");
                     // weaponOneImage.sprite = swordImage;
                     // weaponTwoImage.sprite = swordImage;
                     break;
                 case "Spear":
                     singleWeaponImage.sprite = spearImage;
+                    Debug.Log("T");
                     // weaponOneImage.sprite = spearImage;
                     // weaponTwoImage.sprite = spearImage;
                     break;
                 case "Bow":
                     singleWeaponImage.sprite = bowImage;
+                    Debug.Log("TG");
                     // weaponOneImage.sprite = bowImage;
                     // weaponTwoImage.sprite = bowImage;
                     break;
                 case "Gun":
                     singleWeaponImage.sprite = gunImage;
+                    Debug.Log("Tddd");
                     // weaponOneImage.sprite = gunImage;
                     // weaponTwoImage.sprite = gunImage;
                     break;

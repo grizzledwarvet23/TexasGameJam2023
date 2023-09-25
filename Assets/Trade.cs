@@ -52,7 +52,7 @@ public class Trade : MonoBehaviour
         GameManager.instance.justTraded = true;
         if(weaponGenerator.badChoice) {
             GameManager.instance.gotBadWeapon = true;
-            GameManager.instance.damageToDo =  Mathf.Max(1, (int) 0.75f * oldDamage);
+            GameManager.instance.damageToDo =  Mathf.Max(1, (int) ( 0.75f * oldDamage) );
 
         } else {
             GameManager.instance.gotBadWeapon = false;

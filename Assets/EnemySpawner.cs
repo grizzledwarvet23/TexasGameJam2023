@@ -42,19 +42,19 @@ public class EnemySpawner : MonoBehaviour
 
 
     IEnumerator SpawnEnemies() {
+        if(!doneSpawning) {
         yield return new WaitForSeconds(spawnDelay);
         //spawn enemy in the bounds; heres how it works:
         //transformParents children are labeled 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         //those children have children TL, TR, BL, BR representing the corners of the bounds
         //spawn the enemy  randomly at the bounds:
-        if(GameManager.instance.currentWave == 1) {
             //choose random enemy from enemies array
             GameObject enemy = enemies[Random.Range(0, enemies.Length)];
             //curretnTransform has four children: TL, TR, BL, BR
             //these mean top left, top right, bottom left, bottom right
             //spawn the enemies either between top left and top right, top left and bottom left, top right and bottom right, or bottom left and bottom right./
             //randomly choose the 4 sides then randomly choose a point on that side
-            int side = Random.Range(0, 4);
+            int side = Random.Range(0, 3);
             //top side
             if(side == 0) {
                 //choose random x between TL and TR
@@ -79,8 +79,9 @@ public class EnemySpawner : MonoBehaviour
                 //spawn enemy at (x, y) where x is the x of TR
                 Instantiate(enemy, new Vector3(currentTransform.GetChild(1).position.x, y, 0), Quaternion.identity, enemiesParent.transform);
             }
-            
+            StartCoroutine(SpawnEnemies());
         }
+            
 
     }
 

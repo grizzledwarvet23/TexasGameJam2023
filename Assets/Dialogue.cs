@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
@@ -29,6 +30,16 @@ public class Dialogue : MonoBehaviour
     public Animator blackFade;
 
     public GameObject playButton, exitButton;
+
+    public Image merchantImage;
+    public Sprite[] merchantSprites;
+
+    public GameObject weaponChoice;
+
+    public Image weaponImage;
+    public TextMeshProUGUI weaponName;
+
+    public WeaponGenerator weaponGenerator;
 
 
 
@@ -59,6 +70,11 @@ public class Dialogue : MonoBehaviour
                         if(!playButton.activeSelf) {
                             playButton.SetActive(true);
                             exitButton.SetActive(true);
+                            merchantImage.sprite = merchantSprites[1];
+                            weaponChoice.SetActive(true);
+
+
+
                         }
                     }
                 }
@@ -163,6 +179,8 @@ public class Dialogue : MonoBehaviour
 
     public void HandlePlayerDecision(bool accepted)
     {
+        merchantImage.sprite = merchantSprites[0];
+        weaponChoice.SetActive(false);
         givingFinalResponse = true;
         if(accepted)
         {

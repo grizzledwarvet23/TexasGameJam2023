@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d28993a18352543ab92eca06c95c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDuration: 0.25
+  attackDuration: 0.35
   attackSound: {fileID: 7518909592471720671}
   slasher: 1
   type: Stick

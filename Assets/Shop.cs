@@ -26,17 +26,11 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //&& EnemySpawner.doneSpawning
-        if(!activated && enemiesParent.childCount == 0) {
-            activated = true;
-        }
         
-        if(!doingShop && activated) {
+        
+        if(!doingShop && enemiesParent.childCount == 0 && EnemySpawner.doneSpawning ) {
             //create a rectangular detection area around shop that detects player
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(overlapBoxPosition, overlapBoxSize, 0);
-            bool foundPlayer = false;
-            //move towards player
-            foundPlayer = true;
+            
             doingShop = true;
             StartCoroutine(GoToShop());
             
@@ -49,7 +43,12 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(1f);
         blackFade.Play("FadeOut");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Shop");
+        if(GameManager.instance.currentWave >= 10) {
+            SceneManager.LoadScene("MainMenu");
+        } else {
+            SceneManager.LoadScene("Shop");
+        }
+        
         
     }
 
