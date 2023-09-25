@@ -22181,12 +22181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca5587bc7080b048bd222241ebf6886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  d: {fileID: 0}
   xSpeed: 2
   ySpeed: 2
   weaponParent: {fileID: 502053131686715320}
   healthBar: {fileID: 1073007521}
   health: 100
+  deathMenu: {fileID: 872804801}
 --- !u!50 &520498554
 Rigidbody2D:
   serializedVersion: 4

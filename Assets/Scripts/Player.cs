@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public DeathMenu d;
     public static Player instance;
 
     Rigidbody2D rb;
@@ -20,6 +19,8 @@ public class Player : MonoBehaviour
     private int healthMax;
 
     private bool invincible = false;
+
+    public DeathMenu deathMenu;
 
     private Animator animator;
     // Start is called before the first frame update
@@ -82,9 +83,8 @@ public class Player : MonoBehaviour
             health -= deltaHealth;
             healthBar.value = health / (float)healthMax;
             if (health <= 0) {
+                deathMenu.Death();
                 Destroy(gameObject);
-                d.Death();
-
             }
         }
     }

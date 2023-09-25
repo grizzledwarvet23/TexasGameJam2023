@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
+    //public static DeathMenu instance;
     public static bool GameOver = false;
     public GameObject deathMenuUI;
 
