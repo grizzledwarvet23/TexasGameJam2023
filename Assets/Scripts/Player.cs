@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public DeathMenu d;
-    public static Player instance;
-
     Rigidbody2D rb;
     public float xSpeed;
     public float ySpeed;
@@ -83,8 +80,6 @@ public class Player : MonoBehaviour
             healthBar.value = health / (float)healthMax;
             if (health <= 0) {
                 Destroy(gameObject);
-                d.Death();
-
             }
         }
     }
