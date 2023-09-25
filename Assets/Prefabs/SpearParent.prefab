@@ -134,7 +134,8 @@ MonoBehaviour:
   attackDuration: 0.25
   attackSound: {fileID: 2107047651763833704}
   slasher: 0
-  type: melee
+  type: Spear
+  attackAmount: 1
 --- !u!61 &2107047651763833706
 BoxCollider2D:
   m_ObjectHideFlags: 0

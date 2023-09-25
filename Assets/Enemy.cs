@@ -49,14 +49,14 @@ public class Enemy : MonoBehaviour
     {
         int wave = GameManager.instance.currentWave;
         //health is 2 to the power of (wave - 1), times baseline health\
-        health = (int) Mathf.Pow(1.5f, wave - 1) * baseLineHealth;
+        health = (int) Mathf.Pow(1.15f, wave - 1) * baseLineHealth;
         //print health
         Debug.Log("enemy health: " + health);
         speed = baseSpeed + (wave - 1) * 0.15f;
 
 
         //attack should be 1.5 the attack of the previous wave
-        attack = (int) Mathf.Pow(1.5f, wave - 1) * baseAttack;
+        attack = (int) Mathf.Pow(1.2f, wave - 1) * baseAttack;
         Debug.Log("Enemy attack: " + attack);
 
         //player is find tag Player
