@@ -235,8 +235,12 @@ MonoBehaviour:
   - Sodom & Gamorrah
   - World of Hurt
   - ULTIMATE BEAST
+  - Oppenheimer
+  - One Hit Killer
+  - Shadow of Death
+  - Last Words
   singleWeaponImage: {fileID: 1336623672}
-  singleWeaponText: {fileID: 1588536453}
+  singleWeaponText: {fileID: 677372848}
   weaponOneImage: {fileID: 0}
   weaponTwoImage: {fileID: 0}
   swordImage: {fileID: 21300000, guid: 481f21029b788024c80316e452573ef5, type: 3}

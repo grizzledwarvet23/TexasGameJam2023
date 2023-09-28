@@ -89,10 +89,10 @@ public class GameManager : MonoBehaviour
             float lerpValue = (float)currentWave / (float)waveTiles.Length;
             float cameraSize = Mathf.Lerp(widestCamera, narrowestCamera, lerpValue);
             vcam.m_Lens.OrthographicSize = cameraSize;
-            Debug.Log("Yo " + cameraSize);
+           // Debug.Log("Yo " + cameraSize);
         }
         //if scene name is "Menu", just 0 out all the variables
-        if(scene.name == "Menu") {
+        if(scene.name == "MainMenu") {
             currentWave = 1;
             currentRarity = 1;
             nextRarity = 1;

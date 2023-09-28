@@ -23,24 +23,56 @@ public class Player : MonoBehaviour
     public DeathMenu deathMenu;
 
     private Animator animator;
+
+    public GameObject stick;
     // Start is called before the first frame update
     void Start()
     {
-        if(GameManager.instance.justTraded && weaponParent != null) {
+
+        // if(GameManager.instance.currentWeapon == null && weaponParent == null) {
+        //     Debug.Log(GameManager.instance.currentWeapon);
+        //     weaponParent = stick;
+        //     weaponParent = Instantiate(weaponParent, transform.position, Quaternion.identity); 
+        //     weaponParent.transform.parent = transform;
+        //     weapon = weaponParent.GetComponentInChildren<Weapon>();
+        // } else {
+        if(GameManager.instance.justTraded && GameManager.instance.currentWeapon != null) { //traded for new weapon
+                Debug.Log("TWO");
+                //Destroy(weaponParent);
+                weaponParent = GameManager.instance.currentWeapon;
+                //instantiate weapon parent as a child of this player
+                weaponParent = Instantiate(weaponParent, transform.position, Quaternion.identity);
+                weaponParent.transform.parent = transform;
+                // if(GameManager.instance.gotBadWeapon) {
+                weapon = weaponParent.GetComponentInChildren<Weapon>();
+
+                weapon.SetDamage(GameManager.instance.damageToDo);
+
+        }
+        else if(GameManager.instance.currentWeapon != null) { //keeping same one
+            Debug.Log("THREE");
             Destroy(weaponParent);
             weaponParent = GameManager.instance.currentWeapon;
             //instantiate weapon parent as a child of this player
             weaponParent = Instantiate(weaponParent, transform.position, Quaternion.identity);
             weaponParent.transform.parent = transform;
             // if(GameManager.instance.gotBadWeapon) {
-                weapon = weaponParent.GetComponentInChildren<Weapon>();
+            weapon = weaponParent.GetComponentInChildren<Weapon>();
 
-                weapon.SetDamage( GameManager.instance.damageToDo);
-
-        } else {
+            weapon.SetDamage(GameManager.instance.damageToDo);
+        }
+        else if(weaponParent == null) { //starting out
+            Debug.Log("ONE");
+            weaponParent = Instantiate(stick, transform.position, Quaternion.identity);
+            weaponParent.transform.parent = transform;
+            weapon = weaponParent.GetComponentInChildren<Weapon>();
+        }
+         else {
+            Debug.Log("FOUR");
             weapon = weaponParent.GetComponentInChildren<Weapon>();
 
         }
+        
         invincible = false;
         healthMax = health;
         rb = GetComponent<Rigidbody2D>();

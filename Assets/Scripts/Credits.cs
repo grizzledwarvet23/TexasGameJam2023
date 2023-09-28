@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class Credits : MonoBehaviour
 {
     public Image image;
+    public GameObject credits;
+
+    public GameObject[] menuObjects;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,11 @@ public class Credits : MonoBehaviour
 
     public void openCredits()
     {
-        if (image)
-            image.enabled = !image.enabled;
+        credits.SetActive(true);
+        foreach (GameObject obj in menuObjects) {
+            obj.SetActive(false);
+        }
+        //set this object to inactive:
+        this.gameObject.SetActive(false);
     }
 }
