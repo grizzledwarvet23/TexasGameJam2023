@@ -10,11 +10,30 @@ public class DeathMenu : MonoBehaviour
     public GameObject deathMenuUI;
 
 
+
+
+    public GameObject pause;
+    public GameObject regular;
+    // Start is called before the first frame update
+    void Start()
+    {
+        pause.SetActive(false);
+        regular.SetActive(false);
+    }
+
+
+
+
     public void Death()
     {
+        Debug.Log("HEY");
+        GameManager.instance.currentWave = 1;
+        GameManager.instance.currentWeapon = null;
         deathMenuUI.SetActive(true);
-        Time.timeScale = 0f;
         GameOver = true;
+        //set this object to active:
+        this.gameObject.SetActive(true);
+//        Time.timeScale = 0f;
     }
 
     public void Restart()
