@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         int wave = GameManager.instance.currentWave;
         //health is 2 to the power of (wave - 1), times baseline health\
-        health = (int) Mathf.Pow(1.15f, wave - 1) * baseLineHealth;
+        health = (int) Mathf.Pow(2f, wave - 1) * baseLineHealth;
 
         Debug.Log(health);
         //print health
