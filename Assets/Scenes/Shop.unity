@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 146147483}
   - component: {fileID: 146147482}
   - component: {fileID: 146147481}
+  - component: {fileID: 146147484}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -191,6 +192,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146147484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146147480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9338818194e244ed2bc87191ae106d6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayCount: 0
+  enemyHP: 0
+  enemyDamage: 0
+  lie_prob: 0
+  blackFade: {fileID: 0}
 --- !u!1 &235444840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,10 +1141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 1588536453}
   lines:
-  - Hi mister! Mister look like a fine sir, yes he does.
-  - A fine sir deserves a fine weapon, and I daresay I have a fine weapon for mister.
-  - "All mister has to do is pass me that old weapon of his and I\u2019ll give mister
-    this fancy NEW weapon! But it's up to you..."
+  - 
+  - 
+  - 
   positiveResponse: Mister is so generous! Good luck!
   negativeResponse: Hmm...Have you made the right choice?
   stopPoints: 000001
@@ -1833,7 +1850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold Off
+  m_text: Hold on
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
