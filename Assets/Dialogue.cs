@@ -133,6 +133,8 @@ public class Dialogue : MonoBehaviour
         else if(!playButton.activeSelf) {
             playButton.SetActive(true);
             exitButton.SetActive(true);
+            merchantImage.sprite = merchantSprites[1];
+            weaponChoice.SetActive(true);
         }
         //StartCoroutine(DoNextLine(1));
     }
@@ -249,9 +251,9 @@ public class Dialogue : MonoBehaviour
                 break;
             case 7:
                 lines[0] = "What's my name? How rude of you to ask my true identity.";
-                lines[1] = "But you may call me...The Bum. Or Ms.Bum. Either way, I am..a BUM. HEHELEHOELEOHLOELULU";
-                lines[2] = "Let's see how bummed you are with this weapon!";
-                positiveResponse = "HEHEHHEEEEHEEHEY! ME LIKE THIS SUCKER..!";
+                lines[1] = "But you may call me...The Owl. Or Ms.Owl. Either way, I am..an OWL. HEHELEHOELEOHLOELULU";
+                lines[2] = "Let's see how you HOWL with this weapon!";
+                positiveResponse = "HEHEHHEEEEHEEHEY! ME LIKE THIS CUSTOMER..!";
                 negativeResponse = "AWWWWW...BABY QUETZAL CAN'T HANDLE THE RISK..! OOWOOOWHOOHOOHOO!";
                 break;
             case 8:
@@ -263,7 +265,7 @@ public class Dialogue : MonoBehaviour
                 break;
             case 9:
                 lines[0] = "Hi mister! Mister looks like a fine sir, yes he does...Wait..you've heard of that before?";
-                lines[1] = "I guess you have a liking for weird and gross stuff, just like me! Hehehehehehe.";
+                lines[1] = "I guess you have a liking for weird stuff, just like me! Hehehehehehe.";
                 lines[2] = "For the last two days, you'll be fighting while you are reminded of this nightmare! HAHEHEAHEHAHEHHEHAH";
                 positiveResponse = "IT'S A TRAP!!!! HEHEHEH! IT ALWAYS WAS!";
                 negativeResponse = "Refusing me to help you out??! BUMMER. HAEHEKJHAHALICEBUMSDDHFJKHJD";
@@ -271,7 +273,7 @@ public class Dialogue : MonoBehaviour
             case 10:
                 lines[0] = "Defeated all the monsters?? Good...good..";
                 lines[1] = "What now you say? Well...I say....hehehe...";
-                lines[2] = "...HEHEHEHEHEHEHEHEHEH.....IT'S TIME FOR ME..TO COOK YOU INTO STEW..! I DARE YOU TO TAKE THE SWORD AND FIGHT ME..!";
+                lines[2] = "...HEHEHEHEHEHEHEHEHEH.....IT'S TIME FOR ME..TO COOK YOU INTO STEW..! I DARE YOU TO TAKE THE SWORD AND FIGHT..!";
                 positiveResponse = "LET'S SEE HOW WELL YOU HAVE GAMBLED...!!!";
                 negativeResponse = "WELL...I GUESS YOU'LL END UP LIKE THE MONSTERS YOU KILLED!!!";
                 break;

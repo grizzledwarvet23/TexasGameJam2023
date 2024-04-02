@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public int nextRarity = 1;
 
-    public int dayCount = 1;
+    public int dayCount = 0;
     public int enemyHP = 5;
     public float enemyDamage = 1;
 
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             currentWave = 1;
             currentRarity = 1;
             nextRarity = 1;
-            dayCount = 1;
+            dayCount = 0;
             enemyHP = 5;
             enemyDamage = 1;
             charHP = 100;
